@@ -1,15 +1,17 @@
 const express = require("express");
-const cors = require("cors");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({ origin: "*" }));
+app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "public", "images")));
+
 app.listen(PORT, () => {
   console.log("Server Listening on PORT:", PORT);
 });
 
-app.get("/", (_, response) => {
+app.get("/quote", (_, response) => {
   const possibleQuotes = [
     "Logic will get you from A to B. Imagination will take you everywhere.",
     "There are 10 kinds of people. Those who know binary and those who don't.",
@@ -20,5 +22,9 @@ app.get("/", (_, response) => {
   const randomQuote =
     possibleQuotes[Math.floor(Math.random() * possibleQuotes.length)];
 
-  response.send({ Quote: randomQuote });
+  response.send({ text: randomQuote });
+});
+
+app.get("/", (_, response) => {
+  response.sendFile(path.join(__dirname, "index.html"));
 });

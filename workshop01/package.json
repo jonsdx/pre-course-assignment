@@ -1,17 +1,11 @@
 {
-  "name": "pre-course-assignment",
-  "version": "1.0.0",
+  "name": "Elastic-Beanstalk-Sample-App",
+  "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "backend",
-    "frontend"
-  ],
-  "scripts": {
-    "start:backend": "cd backend && node server.js",
-    "start": "npm run start:backend"
-  },
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
